@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <!-- Link to Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: black; /* Dark navy blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #f1f5f9; /* Light text color */
+        }
+
+        .container {
+            background-color: #334155; /* Dark slate blue background */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 450px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #ffffff; /* Changed to white color */
+            margin-bottom: 20px;
+            margin-top: 30px; /* Add margin from the top */
+            font-weight: 700;
+        }
+
+        form {
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            width: 85%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #475569; /* Darker border */
+            font-size: 16px;
+            outline: none;
+            background-color: #64748b; /* Slightly lighter blue-gray input background */
+            color: #f1f5f9; /* Light gray text */
+            transition: all 0.3s;
+        }
+
+        input[type="text"]::placeholder {
+            color: #cbd5e1; /* Lighter placeholder text */
+        }
+
+        input[type="text"]:focus {
+            border-color: #7dd3fc; /* Light blue border on focus */
+            background-color: #94a3b8; /* Lighter input background on focus */
+            box-shadow: 0 0 8px rgba(125, 211, 252, 0.5);
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #0ea5e9; /* Bright blue button */
+            color: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0284c7; /* Slightly darker blue on hover */
+            transform: scale(1.05); /* Slight grow effect on hover */
+        }
+
+        /* Notes list container */
+        .notes-container {
+            max-height: 200px; /* Set a fixed height for the notes list */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin-top: 20px;
+            padding-right: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #475569; /* Darker background for list items */
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #f1f5f9; /* Light gray text color */
+            text-align: left;
+        }
+
+        /* Style for scrollbar */
+        .notes-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .notes-container::-webkit-scrollbar-thumb {
+            background-color: #0284c7;
+            border-radius: 8px;
+        }
+
+        .notes-container::-webkit-scrollbar-track {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Note Taking App</h1>
+        <form action="/" method="POST">
+            <input type="text" name="note" placeholder="Enter a note" required>
+            <button type="submit">Add Note</button>
+        </form>
+
+        <!-- Notes container with scroll functionality -->
+        <div class="notes-container">
+            <ul>
+                {% for note in notes %}
+                    <li>{{ note }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
